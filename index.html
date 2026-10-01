@@ -1,15 +1,118 @@
 <!doctype html>
-<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
-<title>English Buddy AI</title><link rel="stylesheet" href="style.css"></head>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width,initial-scale=1,maximum-scale=1,user-scalable=no">
+<title>Learn English from Hindi</title>
+<link rel="stylesheet" href="style.css">
+</head>
 <body>
-<header><h1>📚 English Buddy AI</h1><p>English learning for Hindi-medium students • Classes 1–8</p></header>
-<main>
-<section class="card"><h2>Choose your class</h2><div id="classes" class="grid"></div></section>
-<section class="card" id="lesson"><h2>Start a lesson</h2><p id="message">Choose a class to begin.</p><div id="content"></div></section>
-<section class="card"><h2>🎤 Speak & Learn</h2><p>Type a sentence and tap Speak to hear clear English.</p>
-<textarea id="speakText" placeholder="Hello, my name is Rahul."></textarea>
-<button onclick="speak()">🔊 Speak</button><button onclick="startListening()">🎙️ Practice speaking</button>
-<p id="speechResult"></p></section>
-<section class="card"><h2>🧠 Quick Quiz</h2><div id="quiz"></div><button onclick="newQuiz()">New Question</button></section>
-</main>
-<script src="app.js"></script></body></html>
+<div class="app">
+  <div id="welcome" class="screen active" style="padding:0">
+    <div class="hero">
+      <div style="font-size:15px;opacity:.85">Speak • Listen • Read • Grow</div>
+      <h1>Learn English<br>from Hindi</h1>
+      <img class="avatar" src="avatar.svg">
+      <div class="bubble"><b>Hi! 👋</b><br>Let's learn English together!</div>
+      <button class="primary" onclick="show('home')">Get Started →</button>
+      <div class="hint">Small steps. Big dreams.</div>
+    </div>
+  </div>
+
+  <div id="home" class="screen">
+    <header><button class="iconbtn">☰</button><div><div class="title">Hello, Nishant! 👋</div><div class="small">Keep going! You're doing great!</div></div><div class="streak">🔥 3</div></header>
+    <div class="progress-card">
+      <b>Your Progress</b>
+      <div class="progress-row"><div class="ring"></div><div><b>Level 2</b><div class="small">Beginner</div></div><span style="margin-left:auto">›</span></div>
+    </div>
+    <div class="grid">
+      <div class="tile blue" onclick="show('lesson')"><div class="big">📖</div><b>Lessons</b><small>Grammar • Vocabulary</small></div>
+      <div class="tile purple" onclick="show('speak')"><div class="big">🎙️</div><b>Speaking</b><small>Voice Practice</small></div>
+      <div class="tile green" onclick="show('listen')"><div class="big">🎧</div><b>Listening</b><small>Real Conversations</small></div>
+      <div class="tile pink" onclick="show('call')"><div class="big">🤖</div><b>AI Tutor</b><small>Chat & Practice</small></div>
+    </div>
+    <div class="card goal"><div><b>🎁 Daily Goal</b><div class="small">Complete 3 lessons</div><div class="bar" style="width:150px;margin-top:8px"><div class="fill" style="width:33%"></div></div></div><span style="font-size:30px">🎁</span></div>
+  </div>
+
+  <div id="lesson" class="screen">
+    <header><button class="iconbtn back" onclick="show('home')">‹</button><div class="title">Lesson 1<div class="small">Daily Greetings</div></div><div class="small">2/5</div></header>
+    <div class="bar"><div class="fill" style="width:40%"></div></div>
+    <div class="card center"><img class="character" src="avatar.svg"><div class="question">Hello!</div><div class="muted">मेरा नाम निशांत है।</div><div style="margin-top:10px">My name is Nishant.</div><button class="speaker" onclick="speak('My name is Nishant.','en')">🔊</button></div>
+    <h3>Translate this sentence</h3><div class="question">मेरा नाम निशांत है।</div>
+    <button class="option correct" onclick="choose(this)"><span class="radio"></span>My name is Nishant.<button class="speaker" onclick="speak('My name is Nishant.','en')">🔊</button></button>
+    <button class="option" onclick="choose(this)"><span class="radio"></span>I am fine.<button class="speaker" onclick="speak('I am fine.','en')">🔊</button></button>
+    <button class="option" onclick="choose(this)"><span class="radio"></span>I am a boy.<button class="speaker" onclick="speak('I am a boy.','en')">🔊</button></button>
+    <button class="option" onclick="choose(this)"><span class="radio"></span>Good morning.<button class="speaker" onclick="speak('Good morning.','en')">🔊</button></button>
+    <button class="primary wide green" onclick="show('speak')">Next →</button>
+  </div>
+
+  <div id="speak" class="screen">
+    <header style="background:transparent;color:#fff;border:0"><button class="iconbtn" style="color:#fff" onclick="show('home')">‹</button><div class="title">Speak the sentence</div><div>⚙️</div></header>
+    <div class="speak-screen">
+      <div class="bar"><div class="fill" style="width:60%;background:#25d9a6"></div></div>
+      <div class="small" style="text-align:right;color:#cfe3f5">3/5</div>
+      <div class="mic-orb"><button id="micBtn" onclick="toggleListening()">🎙️</button></div>
+      <div class="sentence">I am a student.</div><div class="hindi">मैं एक विद्यार्थी हूँ।</div>
+      <div class="wave"><i style="height:12px"></i><i style="height:19px"></i><i style="height:26px"></i><i style="height:33px"></i><i style="height:40px"></i><i style="height:12px"></i><i style="height:19px"></i><i style="height:26px"></i><i style="height:33px"></i><i style="height:40px"></i><i style="height:12px"></i><i style="height:19px"></i><i style="height:26px"></i><i style="height:33px"></i><i style="height:40px"></i><i style="height:12px"></i><i style="height:19px"></i><i style="height:26px"></i></div>
+      <div class="listen"><span>🔊 &nbsp; Listen first</span><span class="toggle"></span></div>
+      <div class="small" style="color:#cfe3f5;margin-top:12px">I am a student. &nbsp;|&nbsp; मैं एक विद्यार्थी हूँ।</div>
+      <div class="speak-actions"><button class="round" onclick="speak('I am a student.','en')">🔊</button><button class="round main" onclick="toggleListening()">🎙️</button><button class="round" onclick="speak('मैं एक विद्यार्थी हूँ।','hi')">🗣️</button></div>
+      <div class="center" style="margin-top:10px;color:#bcd2e7">Play Audio &nbsp;&nbsp;&nbsp;&nbsp; Tap to speak &nbsp;&nbsp;&nbsp;&nbsp; Use Speaker</div>
+    </div>
+  </div>
+
+  <div id="listen" class="screen">
+    <header><button class="iconbtn" onclick="show('home')">‹</button><div class="title">Listen & Choose</div><div>4/5</div></header>
+    <div class="bar"><div class="fill" style="width:80%"></div></div>
+    <div class="card center"><img class="character" src="avatar.svg"><div style="font-size:40px">🔊</div></div>
+    <h2>What does he say?</h2>
+    <button class="option" onclick="choose(this)"><span class="radio"></span>I am happy.</button>
+    <button class="option correct" onclick="choose(this)"><span class="radio"></span>Good morning.</button>
+    <button class="option" onclick="choose(this)"><span class="radio"></span>I am tired.</button>
+    <button class="option" onclick="choose(this)"><span class="radio"></span>Thank you.</button>
+    <button class="primary wide" onclick="show('call')">Next →</button>
+  </div>
+
+  <div id="call" class="screen">
+    <div class="chat">
+      <header style="background:transparent;color:#fff;border:0;padding:0"><button class="iconbtn" style="color:#fff" onclick="show('home')">‹</button><div class="title">AI Conversation Call</div><button class="end" onclick="show('summary')">End</button></header>
+      <div class="center" style="margin-top:20px"><div class="aiavatar" style="margin:auto">🤖</div><h2 style="margin:8px">Arjun</h2><div class="small" style="color:#b9d2e5">Your English Partner • 02:34</div></div>
+      <div class="bubblechat">Hi Nishant! How are you today? <span>🔊</span></div>
+      <div class="bubblechat me">I am fine. I want to improve my English. <span>🔊</span></div>
+      <div class="bubblechat">That's great! Let's practice some daily conversation. <span>🔊</span></div>
+      <div class="callbar"><button class="round">🎙️</button><button class="round">📹</button><button class="round" style="background:#ef4b4b">☎</button><button class="round" onclick="speak('Lets practice some daily conversation.','en')">🔊</button></div>
+    </div>
+  </div>
+
+  <div id="summary" class="screen">
+    <header><button class="iconbtn" onclick="show('home')">‹</button><div class="title">Lesson Summary 🎉</div><div></div></header>
+    <div class="card center"><div style="font-size:55px">✅</div><h2>Great Job!</h2><div class="muted">You completed the lesson</div></div>
+    <h3>Your Performance</h3>
+    <div>Fluency <span style="float:right">8/10</span><div class="score"><div style="width:80%"></div></div></div>
+    <div>Vocabulary <span style="float:right">7/10</span><div class="score"><div style="width:70%"></div></div></div>
+    <div>Pronunciation <span style="float:right">8/10</span><div class="score"><div style="width:80%"></div></div></div>
+    <h3>New Words Learned</h3>
+    <div class="card"><span class="word">student<br>विद्यार्थी</span><span class="word">today<br>आज</span><span class="word">improve<br>सुधारना</span><span class="word">conversation<br>वार्तालाप</span></div>
+    <button class="primary wide" onclick="show('home')">Continue →</button>
+  </div>
+
+  <div id="profile" class="screen">
+    <header><button class="iconbtn" onclick="show('home')">‹</button><div class="title">Profile</div><div>⚙️</div></header>
+    <div class="profile"><img src="avatar.svg"><h2 style="margin:4px">Nishant Kumar</h2><div class="muted">Level 2 • Beginner</div></div>
+    <div class="stats"><div class="stat">🔥<b>3</b><small>Day Streak</small></div><div class="stat"><b>12</b><small>Total Lessons</small></div></div>
+    <div class="card"><b>🎯 My Goals</b><div class="listrow" style="margin:10px -16px -16px"><span>Speak English fluently</span><span>›</span></div></div>
+    <div class="card"><b>📈 Progress</b><div class="bar" style="margin-top:10px"><div class="fill" style="width:28%"></div></div><div class="small" style="margin-top:6px">28% complete</div></div>
+    <div class="card"><b>🏅 Badges</b><div class="badges" style="margin-top:12px"><div class="badge">⭐</div><div class="badge">🔒</div><div class="badge">🔒</div><div class="badge">🔒</div><div class="badge">🔒</div></div></div>
+  </div>
+
+  <nav id="bottom" class="bottom" style="display:none">
+    <button class="nav active" onclick="show('home')"><span>⌂</span>Home</button>
+    <button class="nav" onclick="show('lesson')"><span>📖</span>Lessons</button>
+    <button class="nav" onclick="show('speak')"><span>🎙</span>Speak</button>
+    <button class="nav" onclick="show('profile')"><span>👤</span>Profile</button>
+  </nav>
+</div>
+
+<script src="script.js"></script>
+</body>
+</html>

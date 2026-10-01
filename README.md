@@ -1,26 +1,20 @@
-# English Buddy AI
+# Learn English from Hindi — Website
 
-A starter English-learning app for Hindi-medium students in Classes 1–8.
+A responsive website prototype based on the supplied mobile UI.
 
-## Included
-- Class 1–8 level selector
-- English + Hindi explanations
-- Vocabulary and grammar starter lessons
-- Text-to-speech English practice using the device/browser voice
-- Speech-recognition practice where supported by Chrome
-- Random mini quiz
-- Responsive mobile UI
+## Files
+- `index.html` — all app screens and content
+- `style.css` — responsive styling
+- `script.js` — navigation, speaker, lesson choices and browser speech recognition
+- `assets/avatar.svg` — local cartoon character
 
 ## Run
-Open `app/index.html` in a browser. For Android testing, upload the `app` folder to a static host or open it through a local development server.
+Open `index.html` directly in a browser, or upload the folder to GitHub Pages, Netlify, Vercel, or another static hosting service.
 
-## Turning this into a real Android app
-This starter is a web app. It can later be wrapped as an Android app with Capacitor or rebuilt in Flutter/React Native. A production AI tutor should connect its chat/lesson generation to a secure backend so API keys are not exposed in the APK.
+### Voice
+- Text-to-speech uses the browser Speech Synthesis API.
+- Speaking practice uses the Web Speech Recognition API where the browser supports it.
+- Chrome on Android generally provides the best compatibility.
 
-## Suggested AI tutor features
-1. Hindi explanations on demand.
-2. Adaptive lessons by class and test score.
-3. Pronunciation feedback.
-4. Daily 10-minute practice.
-5. Parent progress dashboard.
-6. NCERT-aligned lesson packs (using properly licensed/source material).
+## Note
+The AI conversation screen is a functional demo UI. A real AI tutor requires a backend/API connection.
