@@ -1,0 +1,15 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>English Buddy AI</title><link rel="stylesheet" href="style.css"></head>
+<body>
+<header><h1>📚 English Buddy AI</h1><p>English learning for Hindi-medium students • Classes 1–8</p></header>
+<main>
+<section class="card"><h2>Choose your class</h2><div id="classes" class="grid"></div></section>
+<section class="card" id="lesson"><h2>Start a lesson</h2><p id="message">Choose a class to begin.</p><div id="content"></div></section>
+<section class="card"><h2>🎤 Speak & Learn</h2><p>Type a sentence and tap Speak to hear clear English.</p>
+<textarea id="speakText" placeholder="Hello, my name is Rahul."></textarea>
+<button onclick="speak()">🔊 Speak</button><button onclick="startListening()">🎙️ Practice speaking</button>
+<p id="speechResult"></p></section>
+<section class="card"><h2>🧠 Quick Quiz</h2><div id="quiz"></div><button onclick="newQuiz()">New Question</button></section>
+</main>
+<script src="app.js"></script></body></html>
